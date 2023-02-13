@@ -41,9 +41,8 @@ fetch(full_URL)
   .then((rep) => {
     let data = JSON.parse(rep.substr(47).slice(0, -2))
 
-    pricePropan.innerHTML = data.table.rows[0].c[0].v
-
-    console.log(data.table.rows[0].c[0].v)
+    pricePropan.setAttribute('value', data.table.rows[0].c[0].v)
+    sellDryingPrice.setAttribute('value', data.table.rows[0].c[1].v)
   })
 
 // Calculation
