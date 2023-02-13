@@ -22,6 +22,30 @@ const sellDryingPrice = document.querySelector('.js-sellDryingPrice')
 
 const btnResult = document.querySelector('.js-btnResult')
 
+// Google sheet table datas
+
+let sheet_id = '14Up2ifhb4igG_Das-n-hXAsh_cADLXmjtfX8954xdOg'
+let sheet_title = 'main'
+let sheet_range = 'A1:B2'
+
+let full_URL =
+  'https://docs.google.com/spreadsheets/d/' +
+  sheet_id +
+  '/gviz/tq?sheet=' +
+  sheet_title +
+  '&range=' +
+  sheet_range
+
+fetch(full_URL)
+  .then((res) => res.text())
+  .then((rep) => {
+    let data = JSON.parse(rep.substr(47).slice(0, -2))
+
+    pricePropan.innerHTML = data.table.rows[0].c[0].v
+
+    console.log(data.table.rows[0].c[0].v)
+  })
+
 // Calculation
 
 function calculate() {
