@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width = 1200" />
+
+    <link rel="stylesheet" href="./CSS/styles.css" />
+    <title>Hammond table</title>
+  </head>
+
+  <body>
+    <header>
+      <h2><br /></h2>
+    </header>
+    <!-- Wrapper/Обгортка -->
+    <div class="wrapper">
+      <div class="main-content">
+        <h1>Розрахунок послуги сушіння</h1>
+        <h3>
+          Дана таблиця є економічним розрахунком надання послуги зерносушіння на
+          території замовника за допомогою мобільної зерносушарки власного
+          виробництва. Розрахунок виконується за умови наявності зерносушарки
+          без урахування витрат на її власне виробництво. Попередньо
+          рекомендується ознайомитися з презентацією
+          <a
+            href="./img/Hammond2021.pptx"
+            download
+            style="color: black"
+            title="завантажити презентацію"
+            >"Проект виробництва мобільних зерносушарок".</a
+          >
+        </h3>
+        <!-- усі таблиці -->
+        <div class="all-tables">
+          <div class="tables-left">
+            <div class="table-data">
+              <table>
+                <caption>
+                  Вихідні дані
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Вага зерна (вологе), тонн*</td>
+                    <td>
+                      <input
+                        class="cell-input js-grainQty"
+                        type="text"
+                        placeholder="Введіть кількість зерна"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Початкова вологість, %</td>
+                    <td>
+                      <input
+                        class="cell-input js-grainMoisture"
+                        type="number"
+                        placeholder="Введіть від 15 до 35"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Культура</td>
+                    <td>
+                      <select name="type-grain" id="type-grain">
+                        <option value="maize">КУКУРУДЗА</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>*з урахуванням сушіння на одній локації</p>
+            </div>
+            <div class="table-expences">
+              <table>
+                <caption>
+                  Операційні витрати
+                </caption>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>грн/кг</td>
+                    <td>грн</td>
+                  </tr>
+                  <tr>
+                    <td>Паливо (пропан**)</td>
+                    <td>
+                      <input
+                        class="cell-input js-pricePropan"
+                        type="number"
+                        placeholder="Актуалізуйте ціну"
+                      />
+                    </td>
+                    <td>
+                      <output
+                        name="total-fuel-cost"
+                        type="number"
+                        class="js-totalPricePropan"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Оплата праці 4 робітників (+ проживання і транспорт)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td>
+                      <output
+                        name="total-salary-cost"
+                        class="js-totalSalary"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Додаткові витрати (двічі завантаження і розвантаження)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td>
+                      <output name="total-loading-cost">30000</output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Логістика (дві фури у дві сторони, Одеса +500км)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td>
+                      <output name="total-logistic-cost">160000</output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right"></td>
+                    <td class="no-border-left go-right"><b>Сума, грн</b></td>
+                    <td class="results">
+                      <b
+                        ><output
+                          name="total-operation-cost"
+                          type="number"
+                          class="js-totalExpences"
+                        ></output
+                      ></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                **актуалізуйте ціну пропану на сайті
+                <a href="https://ukravtonomgaz.ua" target="_blank"
+                  >Укравтономгаз</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="tables-right">
+            <div class="table-capacity">
+              <table>
+                <caption>
+                  Розрахункові показники
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Продуктивність, тонн/год</td>
+                    <td>
+                      <output
+                        name="capacity"
+                        type="number"
+                        class="js-dryerCapacity"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Кількість днів сушіння <br />
+                      (враховуючи завантаження/запуск)
+                    </td>
+                    <td>
+                      <output
+                        name="daysDrying"
+                        type="number"
+                        class="js-daysDrying"
+                      ></output>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-finance">
+              <table>
+                <caption>
+                  Фінансові показники
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Собівартість 1-го т*%, грн</td>
+                    <td>
+                      <output
+                        name="net-cost"
+                        type="number"
+                        class="js-netCostPercent"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Запланована ціна сушіння*, 1-го т*%, грн</td>
+                    <td>
+                      <input
+                        class="cell-input js-sellDryingPrice"
+                        type="number"
+                        placeholder="Актуалізуйте ціну"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="go-right">
+                      <span>(без урахування податків)</span
+                      ><b> Прибуток, грн</b>
+                    </td>
+                    <td class="results">
+                      <b
+                        ><output
+                          name="total-profit"
+                          type="number"
+                          class="js-totalProfit"
+                        ></output
+                      ></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                *актуальна ціна сушки у м.Балта, Одеська область
+                <a href="https://alebor.com/prices/" target="_blank"
+                  >ХПП "Чесне"</a
+                >
+              </p>
+            </div>
+            <button class="js-btnResult"><b>Розрахувати</b></button>
+          </div>
+        </div>
+      </div>
+      <br /><br /><br /><br /><br /><br /><br />
+      <footer>
+        <div class="contacts">
+          <p class="contacts-item">
+            <b>При виникненні запитань, звертайтесь:</b>
+          </p>
+          <p class="contacts-item">
+            <a href="tel:+380971114020" class="contacts-number"
+              >+38 097 111 40 20
+            </a>
+          </p>
+          <p class="contacts-item">
+            <a href="mailto:yrachinsky@gmail.com" class="contacts-email">
+              yrachinsky@gmail.com
+            </a>
+          </p>
+        </div>
+        <div class="logo">
+          <img
+            src="img/HAMMOND_free-file (1).png"
+            alt="Logo-hammond"
+            width="200px"
+            class="my_foto"
+          />
+        </div>
+      </footer>
+    </div>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <script src="./js/script.js"></script>
+  </body>
+</html>

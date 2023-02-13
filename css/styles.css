@@ -1,0 +1,194 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  /* background-color: #e5e5e5; */
+  background-image: url("../img/wrapper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  display: block;
+  position: fixed;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 0 0 0 0;
+  background-color: rgba(10, 78, 44, 0.8);
+  color: #fff;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+h1 {
+  display: block;
+  color: lightseagreen;
+}
+
+h3 {
+  width: auto;
+  max-width: 1180px;
+  font-weight: normal;
+  font-size: 14px;
+  margin-top: 26px;
+  margin-bottom: 12px;
+  line-height: 18px;
+}
+
+a {
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  font-size: 11px;
+}
+
+/* Wrapper  */
+.wrapper {
+  width: auto;
+  margin: 0 auto;
+  position: fixed;
+}
+
+.main-content {
+  padding: 4px 40px 0px 60px;
+  margin-bottom:0vmax;
+}
+
+/* загальні дані */
+caption {
+  background-color: rgba(166, 238, 214, 0.6);
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid;
+  border-bottom: none;
+  padding: 3px;
+}
+
+.no-border-right {
+  border-right: none;
+}
+
+.no-border-left {
+  border-left: none;
+}
+
+.go-right {
+  text-align: right;
+}
+
+td {
+  background-color: rgba(245, 245, 220, 0.6);
+  border: 1px solid;
+  margin: 0;
+  padding: 3px;
+  min-width: 80px;
+  text-transform: none;
+  width: 100%;
+}
+
+table {
+  padding: 0;
+  border-collapse: collapse;
+  border: 2px solid;
+  empty-cells: hide;
+}
+
+tr {
+  width: 100%;
+  text-decoration: none;
+}
+
+.cell-input {
+  background-color: azure;
+  border: 1px solid;
+  border-radius: 2px;
+  margin: 0;
+  width: 150px;
+}
+
+.all-tables {
+  display: flex;
+  column-gap: 100px;
+}
+
+/* Влвстивості таблиць */
+.table-data {
+  margin-bottom: 20px;
+}
+
+#type-grain {
+  width: 100%;
+}
+
+.table-capacity {
+  margin-bottom: 65px;
+}
+
+.results {
+  background-color: rgba(245, 211, 149, 0.9);
+  /* opacity: 50%; */
+}
+
+/* кнопка */
+button {
+  height: 30px;
+  background-color: azure;
+  border-radius: 5px;
+  border: 2px solid;
+  opacity: 0.7;
+  cursor: pointer;
+  box-shadow: 3px 3px rgb(154, 153, 153);
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+button:active {
+  background: rgba(166, 238, 214, 0.6);
+  box-shadow: -1px 1px gray;
+  transform: translateY(2px);
+}
+
+/* footer */
+footer {
+  display: flex;
+  align-items: center;
+  column-gap: 700px;
+  padding: 0;
+  padding-bottom: 5px;
+  margin: 0 0 0 0;
+  background-color: rgba(10, 78, 44, 0.8);
+  color: #fff;
+  width: 100vw;
+  height: auto;
+}
+
+.contacts {
+  padding: 0;
+  color: lightseagreen;
+  margin-left: 60px;
+  margin-bottom: 0;
+  align-content: center;
+}
+
+.contacts-number,
+.contacts-email {
+  color: azure;
+  font-weight: normal;
+}
+
+.contacts-item {
+  margin: 5px 0 5px 0;
+}
+
+.logo {
+  padding: 8px 0 0 0;
+
+  margin-right: 60px;
+}
