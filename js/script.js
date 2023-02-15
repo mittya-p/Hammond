@@ -205,3 +205,78 @@ document.addEventListener('keydown', function (e) {
 btnResult.addEventListener('click', function () {
   checkValue()
 })
+
+// Popup
+
+let popupBg = document.querySelector('.popup__bg')
+let popup = document.querySelector('.popup')
+let openPopupButtons = document.querySelectorAll('.open-popup')
+let closePopupButton = document.querySelector('.close-popup')
+
+openPopupButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault()
+    popupBg.classList.add('active')
+    popup.classList.add('active')
+  })
+})
+
+closePopupButton.addEventListener('click', () => {
+  popupBg.classList.remove('active')
+  popup.classList.remove('active')
+  success.style.display = 'none'
+})
+
+document.addEventListener('click', (e) => {
+  if (e.target === popupBg) {
+    popupBg.classList.remove('active')
+    popup.classList.remove('active')
+    success.style.display = 'none'
+  }
+})
+
+// Send form to telegram
+
+const TOKEN = '6199072332:AAH0FNRe-xweyv3SfXdoMbojgCfBFAIkClQ'
+const CHAT_ID = '-1001569099157'
+const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`
+const URI_API_DOC = `https://api.telegram.org/bot${TOKEN}/sendDocument`
+const success = document.getElementById('success')
+
+document.querySelector('.popup').addEventListener('submit', function (e) {
+  e.preventDefault()
+
+  let message = `<b>Запитання:</b>\n`
+  message += `<b>Відправник:</b>${this.name.value}\n`
+  message += `<b>Пошта:</b>${this.email.value}\n`
+  message += `<b>Телефон:</b>${this.tel.value}\n`
+  message += `<b>Запитання:</b>${this.message.value}\n`
+
+  if (
+    this.name.value === '' ||
+    this.email.value === '' ||
+    this.message.value === ''
+  ) {
+    success.innerHTML = 'Заповніть будь ласка поля!'
+    success.style.display = 'block'
+  } else {
+    axios
+      .post(URI_API, {
+        chat_id: CHAT_ID,
+        parse_mode: 'html',
+        text: message,
+      })
+      .then((res) => {
+        this.name.value = ''
+        this.email.value = ''
+        this.tel.value = ''
+        this.message.value = ''
+        success.innerHTML = 'Ваше запитання відправлено!'
+        success.style.display = 'block'
+      })
+
+      .catch((err) => {})
+
+      .finally(() => {})
+  }
+})

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width = 1200" />
 
     <link rel="stylesheet" href="./CSS/styles.css" />
+    <link rel="stylesheet" href="./css/styles-form.css" />
+
     <title>Hammond table</title>
   </head>
 
@@ -242,8 +244,10 @@
             <button class="js-btnResult"><b>Розрахувати</b></button>
           </div>
         </div>
+        <br /><br /><br /><br /><br />
+        <button class="open-popup"><b>Надіслати запитання</b></button>
       </div>
-      <br /><br /><br /><br /><br /><br /><br />
+      <br /><br />
       <footer>
         <div class="contacts">
           <p class="contacts-item">
@@ -270,8 +274,50 @@
         </div>
       </footer>
     </div>
+    <div class="popup__bg">
+      <form class="popup">
+        <svg
+          class="close-popup"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#20b2aa"
+            d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+          />
+        </svg>
+        <label>
+          <input type="text" name="name" autocomplete="off" />
+          <div class="label__text">Ваше ім'я</div>
+        </label>
+        <label>
+          <input type="tel" name="tel" autocomplete="off" />
+          <div class="label__text">Ваш телефон</div>
+        </label>
+        <label>
+          <input type="text" name="email" autocomplete="off" />
+          <div class="label__text">Ваш e-mail:</div>
+        </label>
+        <label>
+          <textarea name="message"></textarea>
+          <div class="label__text">Ваше запитання</div>
+        </label>
+        <div
+          class="alert-success"
+          id="success"
+          style="display: none"
+          role="alert"
+        ></div>
 
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <button type="submit">Відправити</button>
+      </form>
+    </div>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./js/script.js"></script>
   </body>
 </html>
