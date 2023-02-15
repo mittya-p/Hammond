@@ -83,8 +83,8 @@
                 <tbody>
                   <tr>
                     <td></td>
-                    <td>грн/кг</td>
-                    <td>грн</td>
+                    <td class="go-right">грн/кг</td>
+                    <td class="go-right">грн</td>
                   </tr>
                   <tr>
                     <td>Паливо (пропан**)</td>
@@ -96,7 +96,7 @@
                         value=""
                       />
                     </td>
-                    <td>
+                    <td class="go-right">
                       <output
                         name="total-fuel-cost"
                         type="number"
@@ -109,7 +109,7 @@
                       Оплата праці 4 робітників (+ проживання і транспорт)
                     </td>
                     <td class="no-border-left"></td>
-                    <td>
+                    <td class="go-right">
                       <output
                         name="total-salary-cost"
                         class="js-totalSalary"
@@ -121,8 +121,8 @@
                       Додаткові витрати (двічі завантаження і розвантаження)
                     </td>
                     <td class="no-border-left"></td>
-                    <td>
-                      <output name="total-loading-cost">30000</output>
+                    <td class="go-right">
+                      <output class="" name="total-loading-cost">30 000</output>
                     </td>
                   </tr>
                   <tr>
@@ -130,14 +130,14 @@
                       Логістика (дві фури у дві сторони, Одеса +500км)
                     </td>
                     <td class="no-border-left"></td>
-                    <td>
-                      <output name="total-logistic-cost">160000</output>
+                    <td class="go-right">
+                      <output name="total-logistic-cost">160 000</output>
                     </td>
                   </tr>
                   <tr>
                     <td class="no-border-right"></td>
                     <td class="no-border-left go-right"><b>Сума, грн</b></td>
-                    <td class="results">
+                    <td class="results go-right">
                       <b
                         ><output
                           name="total-operation-cost"
@@ -166,7 +166,7 @@
                 <tbody>
                   <tr>
                     <td>Продуктивність, тонн/год</td>
-                    <td>
+                    <td class="go-right">
                       <output
                         name="capacity"
                         type="number"
@@ -179,7 +179,7 @@
                       Кількість днів сушіння <br />
                       (враховуючи завантаження/запуск)
                     </td>
-                    <td>
+                    <td class="go-right">
                       <output
                         name="daysDrying"
                         type="number"
@@ -198,7 +198,7 @@
                 <tbody>
                   <tr>
                     <td>Собівартість 1-го т*%, грн</td>
-                    <td>
+                    <td class="go-right">
                       <output
                         name="net-cost"
                         type="number"
@@ -222,7 +222,7 @@
                       <span>(без урахування податків)</span
                       ><b> Прибуток, грн</b>
                     </td>
-                    <td class="results">
+                    <td class="results go-right">
                       <b
                         ><output
                           name="total-profit"

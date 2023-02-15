@@ -5,13 +5,13 @@ const logisticExpences = 160000
 
 //Outputs
 
-const totalPricePropan = document.querySelector('.js-totalPricePropan')
-const totalSalary = document.querySelector('.js-totalSalary')
-const totalExpences = document.querySelector('.js-totalExpences')
-const dryerCapacity = document.querySelector('.js-dryerCapacity')
-const daysDrying = document.querySelector('.js-daysDrying')
-const netCostPercent = document.querySelector('.js-netCostPercent')
-const totalProfit = document.querySelector('.js-totalProfit')
+const totalPricePropanOutput = document.querySelector('.js-totalPricePropan')
+const totalSalaryOutput = document.querySelector('.js-totalSalary')
+const totalExpencesOutput = document.querySelector('.js-totalExpences')
+const dryerCapacityOutput = document.querySelector('.js-dryerCapacity')
+const daysDryingOutput = document.querySelector('.js-daysDrying')
+const netCostPercentOutput = document.querySelector('.js-netCostPercent')
+const totalProfitOutput = document.querySelector('.js-totalProfit')
 
 //Inputs
 
@@ -141,37 +141,64 @@ function calculate() {
 
   //Calculation
 
-  dryerCapacity.innerHTML = dryerProductivity
+  let dryerCapacity
+  let daysDrying
+  let totalSalary
+  let totalPricePropan
+  let totalExpences
+  let netCostPercent
+  let totalProfit
 
-  daysDrying.innerHTML = Math.round(
-    Number(grainQty.value) / (dryerProductivity * 20) + 2
-  )
-  totalSalary.innerHTML = Number(daysDrying.value) * 10000
+  dryerCapacity = dryerProductivity
 
-  totalPricePropan.innerHTML = Math.round(
+  daysDrying = Math.round(Number(grainQty.value) / (dryerProductivity * 20) + 2)
+
+  totalSalary = daysDrying * 10000
+
+  totalPricePropan = Math.round(
     (Number(grainMoisture.value) - 14) *
       propanConsumption *
       Number(pricePropan.value) *
       Number(grainQty.value)
   )
 
-  totalExpences.innerHTML =
-    Number(totalPricePropan.value) +
-    Number(totalSalary.value) +
-    addExpences +
-    logisticExpences
+  totalExpences =
+    totalPricePropan + totalSalary + addExpences + logisticExpences
 
-  netCostPercent.innerHTML = Math.round(
-    Number(totalExpences.value) /
+  netCostPercent = Math.round(
+    totalExpences /
       ((Number(grainMoisture.value) - 14) * Number(grainQty.value))
   )
 
-  totalProfit.innerHTML = Math.round(
-    (Number(sellDryingPrice.value) - Number(netCostPercent.value)) *
+  totalProfit = Math.round(
+    (Number(sellDryingPrice.value) - netCostPercent) *
       (Number(grainMoisture.value) - 14) *
       Number(grainQty.value)
   )
+
+  dryerCapacityOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(dryerCapacity)
+  daysDryingOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(daysDrying)
+  totalSalaryOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(totalSalary)
+  totalPricePropanOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(totalPricePropan)
+  totalExpencesOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(totalExpences)
+  netCostPercentOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(netCostPercent)
+  totalProfitOutput.innerHTML = Intl.NumberFormat({
+    signDisplay: 'always',
+  }).format(totalProfit)
 }
+
 // Check cell
 
 function checkValue() {
