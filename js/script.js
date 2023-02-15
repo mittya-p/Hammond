@@ -246,11 +246,11 @@ const success = document.getElementById('success')
 document.querySelector('.popup').addEventListener('submit', function (e) {
   e.preventDefault()
 
-  let message = `<b>Запитання:</b>\n`
-  message += `<b>Відправник:</b>${this.name.value}\n`
-  message += `<b>Пошта:</b>${this.email.value}\n`
-  message += `<b>Телефон:</b>${this.tel.value}\n`
-  message += `<b>Запитання:</b>${this.message.value}\n`
+  let message = `<b>Повідомлення HAMMOND</b>\n`
+  message += `<b>Відправник: </b>${this.name.value}\n`
+  message += `<b>Пошта: </b>${this.email.value}\n`
+  message += `<b>Телефон: </b>${this.tel.value}\n`
+  message += `<b>Запитання: </b>${this.message.value}\n`
 
   if (
     this.name.value === '' ||
