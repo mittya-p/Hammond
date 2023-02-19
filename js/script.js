@@ -176,27 +176,21 @@ function calculate() {
       Number(grainQty.value)
   )
 
-  dryerCapacityOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(dryerCapacity)
-  daysDryingOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(daysDrying)
-  totalSalaryOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(totalSalary)
-  totalPricePropanOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(totalPricePropan)
-  totalExpencesOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(totalExpences)
-  netCostPercentOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(netCostPercent)
-  totalProfitOutput.innerHTML = Intl.NumberFormat({
-    signDisplay: 'always',
-  }).format(totalProfit)
+  // Formating and output
+
+  function formatNumberOutput(element, number) {
+    element.innerHTML = Intl.NumberFormat({
+      signDisplay: 'always',
+    }).format(number)
+  }
+
+  formatNumberOutput(dryerCapacityOutput, dryerCapacity)
+  formatNumberOutput(daysDryingOutput, daysDrying)
+  formatNumberOutput(totalSalaryOutput, totalSalary)
+  formatNumberOutput(totalPricePropanOutput, totalPricePropan)
+  formatNumberOutput(totalExpencesOutput, totalExpences)
+  formatNumberOutput(netCostPercentOutput, netCostPercent)
+  formatNumberOutput(totalProfitOutput, totalProfit)
 }
 
 // Check cell
