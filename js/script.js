@@ -301,3 +301,19 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
       .finally(() => {})
   }
 })
+
+// Send visit message to Telegram
+
+document.addEventListener('DOMContentLoaded', function () {
+  myFunction()
+})
+
+function myFunction() {
+  let message = `<b>Відвідування сайту HAMMOND"</b>\n`
+
+  axios.post(URI_API, {
+    chat_id: CHAT_ID,
+    parse_mode: 'html',
+    text: message,
+  })
+}
