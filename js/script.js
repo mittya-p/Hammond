@@ -305,10 +305,10 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
 // Send visit message to Telegram
 
 document.addEventListener('DOMContentLoaded', function () {
-  myFunction()
+  sendVsitMessage()
 })
 
-function myFunction() {
+function sendVsitMessage() {
   let message = `<b>Відвідування сайту HAMMOND"</b>\n`
 
   axios.post(URI_API, {
