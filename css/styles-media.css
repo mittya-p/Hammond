@@ -106,4 +106,12 @@
     .popup {
         width: 300px
     }
+
+    .star-link {
+        color: white;
+    }
+
+    .open-popup {
+        margin-top: 20px;
+    }
 }

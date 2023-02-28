@@ -388,7 +388,6 @@ function getAddress() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const userAddress = data.address
       userPosCity = data.address.city
       userDistrict = data.address.district
       userRoad = data.address.road
