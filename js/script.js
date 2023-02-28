@@ -265,6 +265,16 @@ const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`
 const URI_API_DOC = `https://api.telegram.org/bot${TOKEN}/sendDocument`
 const success = document.getElementById('success')
 
+function validateEmail(email) {
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  return emailRegex.test(email)
+}
+function validateTelphone(telphone) {
+  const telphoneRegex =
+    /^(\+?\d{1,3}\s?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/
+  return telphoneRegex.test(telphone)
+}
+
 document.querySelector('.popup').addEventListener('submit', function (e) {
   e.preventDefault()
 
@@ -274,7 +284,15 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
   message += `<b>Телефон: </b>${this.tel.value}\n`
   message += `<b>Запитання: </b>${this.message.value}\n`
 
-  if (
+  if (validateTelphone(this.tel.value) === false) {
+    success.innerHTML = 'Невірний формат телефону!'
+    success.style.display = 'block'
+    return
+  } else if (validateEmail(this.email.value) === false) {
+    success.innerHTML = 'Невірний формат пошти!'
+    success.style.display = 'block'
+    return
+  } else if (
     this.name.value === '' ||
     this.email.value === '' ||
     this.message.value === ''

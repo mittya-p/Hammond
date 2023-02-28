@@ -36,10 +36,38 @@
     }
 
     body {
-
+        background-image: url("../img/wrapper-mobile.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .main-content {
+        padding: 4px 20px 0px 20px;
+        margin-bottom: 0vmax;
+    }
+
+    footer {
+        padding: 4px 20px 0px 20px;
+        margin-bottom: 0vmax;
+    }
+
+    .contacts {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 14px;
+    }
+
+    .my_foto {
+        width: 120px;
+    }
+
+    .logo {
+        margin-right: 40px;
+    }
+
+    .popup {
+        width: 300px
     }
 }
 
