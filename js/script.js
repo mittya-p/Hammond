@@ -283,8 +283,14 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
   message += `<b>Пошта: </b>${this.email.value}\n`
   message += `<b>Телефон: </b>${this.tel.value}\n`
   message += `<b>Запитання: </b>${this.message.value}\n`
-
-  if (validateTelphone(this.tel.value) === false) {
+  if (
+    this.name.value === '' ||
+    this.email.value === '' ||
+    this.message.value === ''
+  ) {
+    success.innerHTML = 'Заповніть будь ласка поля!'
+    success.style.display = 'block'
+  } else if (validateTelphone(this.tel.value) === false) {
     success.innerHTML = 'Невірний формат телефону!'
     success.style.display = 'block'
     return
@@ -292,13 +298,6 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
     success.innerHTML = 'Невірний формат пошти!'
     success.style.display = 'block'
     return
-  } else if (
-    this.name.value === '' ||
-    this.email.value === '' ||
-    this.message.value === ''
-  ) {
-    success.innerHTML = 'Заповніть будь ласка поля!'
-    success.style.display = 'block'
   } else {
     axios
       .post(URI_API, {
