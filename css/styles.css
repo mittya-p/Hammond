@@ -198,3 +198,8 @@ footer {
 
   margin-right: 60px;
 }
+
+.star-link {
+  color: white;
+  text-shadow: 0 0 10px #000
+}
