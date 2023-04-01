@@ -323,7 +323,7 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
 // Send visit message to Telegram
 
 function sendVisitMessage() {
-  let message = `<b>Відвідування сайту HAMMOND"</b>\n`
+  let message = `<b>Відвідування сайту HAMMOND</b>\n`
 
   axios.post(URI_API, {
     chat_id: CHAT_ID,
