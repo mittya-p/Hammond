@@ -99,14 +99,21 @@
                 <tbody>
                   <tr>
                     <td></td>
-                    <td class="go-right">грн/кг</td>
+                    <td class="go-right js-meterage">грн/кг</td>
                     <td class="go-right">грн</td>
                   </tr>
                   <tr>
-                    <td>Паливо (пропан**)</td>
+                    <td>
+                      <select name="type-fuel" id="type-fuel">
+                        <option value="propan">Паливо (пропан*)</option>
+                        <option value="naturalGas">
+                          Паливо (природний газ*)
+                        </option>
+                      </select>
+                    </td>
                     <td>
                       <input
-                        class="cell-input js-pricePropan"
+                        class="cell-input js-fuelPrice"
                         type="number"
                         placeholder="Актуалізуйте ціну"
                         value=""
@@ -116,7 +123,7 @@
                       <output
                         name="total-fuel-cost"
                         type="number"
-                        class="js-totalPricePropan"
+                        class="js-totalFuelPrice"
                       ></output>
                     </td>
                   </tr>
@@ -143,16 +150,25 @@
                   </tr>
                   <tr>
                     <td class="no-border-right">
-                      Логістика (дві фури у дві сторони, Одеса +500км)
+                      Логістика (<span class="js-trucks-amount">дві фури</span>
+                      у дві сторони, Одеса +500км)
                     </td>
                     <td class="no-border-left"></td>
                     <td class="go-right">
-                      <output name="total-logistic-cost">160 000</output>
+                      <output
+                        name="total-logistic-cost"
+                        type="number"
+                        class="js-total-logistic-cost"
+                      ></output>
                     </td>
                   </tr>
                   <tr>
-                    <td class="no-border-right"></td>
-                    <td class="no-border-left go-right"><b>Сума, грн</b></td>
+                    <td class="no-border-right">
+                      <span class="js-gas-from-client"></span>
+                    </td>
+                    <td class="no-border-left go-right">
+                      <b>Сума, грн</b>
+                    </td>
                     <td class="results go-right">
                       <b
                         ><output
@@ -166,12 +182,19 @@
                 </tbody>
               </table>
               <p class="star-link">
-                **актуалізуйте ціну пропану на сайті
+                *актуалізуйте ціну палива на сайті
                 <a
                   class="star-link"
                   href="https://ukravtonomgaz.ua"
                   target="_blank"
                   >Укравтономгаз</a
+                >
+                та
+                <a
+                  class="star-link"
+                  href="https://index.minfin.com.ua/ua/tariff/gas/prom/"
+                  target="_blank"
+                  >Мінфін</a
                 >
               </p>
             </div>

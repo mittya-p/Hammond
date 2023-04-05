@@ -1,11 +1,11 @@
 'use strict'
 
 const addExpences = 30000
-const logisticExpences = 160000
+let logisticExpences
 
 //Outputs
 
-const totalPricePropanOutput = document.querySelector('.js-totalPricePropan')
+const totalFuelPriceOutput = document.querySelector('.js-totalFuelPrice')
 const totalSalaryOutput = document.querySelector('.js-totalSalary')
 const totalExpencesOutput = document.querySelector('.js-totalExpences')
 const dryerCapacityOutput = document.querySelector('.js-dryerCapacity')
@@ -17,16 +17,18 @@ const totalProfitOutput = document.querySelector('.js-totalProfit')
 
 const grainQty = document.querySelector('.js-grainQty')
 const grainMoisture = document.querySelector('.js-grainMoisture')
-const pricePropan = document.querySelector('.js-pricePropan')
+const fuelPrice = document.querySelector('.js-fuelPrice')
 const sellDryingPrice = document.querySelector('.js-sellDryingPrice')
 
 const btnResult = document.querySelector('.js-btnResult')
+
+const fuelType = document.getElementById('type-fuel')
 
 // Google sheet table datas
 
 let sheet_id = '14Up2ifhb4igG_Das-n-hXAsh_cADLXmjtfX8954xdOg'
 let sheet_title = 'main'
-let sheet_range = 'A1:B2'
+let sheet_range = 'A1:B3'
 
 let full_URL =
   'https://docs.google.com/spreadsheets/d/' +
@@ -42,110 +44,175 @@ fetch(full_URL)
     let data = JSON.parse(rep.substr(47).slice(0, -2))
     console.log(data)
 
-    pricePropan.setAttribute('value', data.table.rows[0].c[0].v)
+    fuelPrice.setAttribute('value', data.table.rows[0].c[0].v)
     sellDryingPrice.setAttribute('value', data.table.rows[0].c[1].v)
   })
+
+fuelType.addEventListener('change', function () {
+  fetch(full_URL)
+    .then((res) => res.text())
+    .then((rep) => {
+      let data = JSON.parse(rep.substr(47).slice(0, -2))
+      console.log(data)
+      if (fuelType.value === 'naturalGas') {
+        document.querySelector('.js-trucks-amount').innerHTML = 'одна фура'
+        document.querySelector('.js-meterage').innerHTML = 'грн/куб.м'
+        fuelPrice.setAttribute('value', data.table.rows[1].c[0].v)
+        sellDryingPrice.setAttribute('value', data.table.rows[1].c[1].v)
+        document.querySelector('.js-gas-from-client').innerHTML =
+          'Паливо надає замовник'
+        document.querySelector('.js-gas-from-client').style.color = 'red'
+        totalFuelPriceOutput.style.color = 'red'
+      } else if (fuelType.value === 'propan') {
+        document.querySelector('.js-trucks-amount').innerHTML = 'дві фури'
+        document.querySelector('.js-meterage').innerHTML = 'грн/кг'
+        fuelPrice.setAttribute('value', data.table.rows[0].c[0].v)
+        sellDryingPrice.setAttribute('value', data.table.rows[0].c[1].v)
+        document.querySelector('.js-gas-from-client').innerHTML = ''
+        totalFuelPriceOutput.style.color = 'black'
+      }
+    })
+})
 
 // Calculation
 
 function calculate() {
   let dryerProductivity
   let propanConsumption
+  let naturalGasConsumption
   let tableGrainMoisture = Number(grainMoisture.value)
+
+  // Table Parameters for Propan
+
   switch (tableGrainMoisture) {
     case 15:
       dryerProductivity = 13
       propanConsumption = 2.23
+      naturalGasConsumption = 3.3
       break
     case 16:
       dryerProductivity = 14.7
       propanConsumption = 1.79
+      naturalGasConsumption = 2.32
       break
     case 17:
       dryerProductivity = 14.4
       propanConsumption = 1.61
+      naturalGasConsumption = 2.08
       break
     case 18:
       dryerProductivity = 15.1
       propanConsumption = 1.48
+      naturalGasConsumption = 1.92
       break
     case 19:
       dryerProductivity = 15.6
       propanConsumption = 1.41
+      naturalGasConsumption = 1.82
       break
     case 20:
       dryerProductivity = 14.4
       propanConsumption = 1.38
+      naturalGasConsumption = 1.79
       break
     case 21:
       dryerProductivity = 13
       propanConsumption = 1.36
+      naturalGasConsumption = 1.77
       break
     case 22:
       dryerProductivity = 11.9
       propanConsumption = 1.35
+      naturalGasConsumption = 1.75
       break
     case 23:
       dryerProductivity = 11
       propanConsumption = 1.33
+      naturalGasConsumption = 1.72
       break
     case 24:
       dryerProductivity = 10.2
       propanConsumption = 1.31
+      naturalGasConsumption = 1.7
       break
     case 25:
       dryerProductivity = 9.6
       propanConsumption = 1.29
+      naturalGasConsumption = 1.67
       break
     case 26:
       dryerProductivity = 9.1
       propanConsumption = 1.26
+      naturalGasConsumption = 1.64
       break
     case 27:
       dryerProductivity = 8.7
       propanConsumption = 1.24
+      naturalGasConsumption = 1.61
       break
     case 28:
       dryerProductivity = 8.3
       propanConsumption = 1.21
+      naturalGasConsumption = 1.57
       break
     case 29:
       dryerProductivity = 8
       propanConsumption = 1.18
+      naturalGasConsumption = 1.53
       break
     case 30:
       dryerProductivity = 7.7
       propanConsumption = 1.16
+      naturalGasConsumption = 1.5
       break
     case 31:
       dryerProductivity = 7.5
       propanConsumption = 1.13
+      naturalGasConsumption = 1.46
       break
     case 32:
       dryerProductivity = 7.3
       propanConsumption = 1.11
+      naturalGasConsumption = 1.43
       break
     case 33:
       dryerProductivity = 7.1
       propanConsumption = 1.09
+      naturalGasConsumption = 1.41
       break
     case 34:
       dryerProductivity = 6.9
       propanConsumption = 1.07
+      naturalGasConsumption = 1.39
       break
     case 35:
       dryerProductivity = 6.6
       propanConsumption = 1.06
+      naturalGasConsumption = 1.38
       break
     default:
   }
+
+  // Choose Fuel Type
+
+  let fuelConsumption
+
+  if (fuelType.value === 'propan') {
+    fuelConsumption = propanConsumption
+    logisticExpences = 160000
+  } else if (fuelType.value === 'naturalGas') {
+    fuelConsumption = naturalGasConsumption
+    logisticExpences = 80000
+  }
+
+  document.querySelector('.js-total-logistic-cost').innerHTML = logisticExpences
 
   //Calculation
 
   let dryerCapacity
   let daysDrying
   let totalSalary
-  let totalPricePropan
+  let totalFuelPrice
   let totalExpences
   let netCostPercent
   let totalProfit
@@ -156,15 +223,17 @@ function calculate() {
 
   totalSalary = daysDrying * 10000
 
-  totalPricePropan = Math.round(
+  totalFuelPrice = Math.round(
     (Number(grainMoisture.value) - 14) *
-      propanConsumption *
-      Number(pricePropan.value) *
+      fuelConsumption *
+      Number(fuelPrice.value) *
       Number(grainQty.value)
   )
+  totalExpences = totalFuelPrice + totalSalary + addExpences + logisticExpences
 
-  totalExpences =
-    totalPricePropan + totalSalary + addExpences + logisticExpences
+  if (fuelType.value === 'naturalGas') {
+    totalExpences = totalExpences - totalFuelPrice
+  }
 
   netCostPercent = Math.round(
     totalExpences /
@@ -188,7 +257,7 @@ function calculate() {
   formatNumberOutput(dryerCapacityOutput, dryerCapacity)
   formatNumberOutput(daysDryingOutput, daysDrying)
   formatNumberOutput(totalSalaryOutput, totalSalary)
-  formatNumberOutput(totalPricePropanOutput, totalPricePropan)
+  formatNumberOutput(totalFuelPriceOutput, totalFuelPrice)
   formatNumberOutput(totalExpencesOutput, totalExpences)
   formatNumberOutput(netCostPercentOutput, netCostPercent)
   formatNumberOutput(totalProfitOutput, totalProfit)
@@ -206,7 +275,7 @@ function checkValue() {
   if (
     grainQty.value &&
     grainMoisture.value &&
-    pricePropan.value &&
+    fuelPrice.value &&
     sellDryingPrice.value !== '' &&
     !isNaN(valQty)
   ) {
