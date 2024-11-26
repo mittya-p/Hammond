@@ -49,23 +49,48 @@ fetch(full_URL)
   })
 
 fuelType.addEventListener('change', function () {
+  // Choose language message
+  const language = document.documentElement.lang
+  const messages = {
+    ua: {
+      oneTruck: 'одна фура',
+      twoTrucks: 'дві фури',
+      gasUnit: 'грн/куб.м',
+      propaneUnit: 'грн/кг',
+      clientGas: 'Паливо надає замовник',
+    },
+    en: {
+      oneTruck: 'one truck',
+      twoTrucks: 'two trucks',
+      gasUnit: 'hrv/m³',
+      propaneUnit: 'hrv/kg',
+      clientGas: 'Fuel provided by the customer',
+    },
+  }
+
+  const langMessages = messages[language] || messages.ua
+
   fetch(full_URL)
     .then((res) => res.text())
     .then((rep) => {
       let data = JSON.parse(rep.substr(47).slice(0, -2))
       console.log(data)
+
       if (fuelType.value === 'naturalGas') {
-        document.querySelector('.js-trucks-amount').innerHTML = 'одна фура'
-        document.querySelector('.js-meterage').innerHTML = 'грн/куб.м'
+        document.querySelector('.js-trucks-amount').innerHTML =
+          langMessages.oneTruck
+        document.querySelector('.js-meterage').innerHTML = langMessages.gasUnit
         fuelPrice.setAttribute('value', data.table.rows[1].c[0].v)
         sellDryingPrice.setAttribute('value', data.table.rows[1].c[1].v)
         document.querySelector('.js-gas-from-client').innerHTML =
-          'Паливо надає замовник'
+          langMessages.clientGas
         document.querySelector('.js-gas-from-client').style.color = 'red'
         totalFuelPriceOutput.style.color = 'red'
       } else if (fuelType.value === 'propan') {
-        document.querySelector('.js-trucks-amount').innerHTML = 'дві фури'
-        document.querySelector('.js-meterage').innerHTML = 'грн/кг'
+        document.querySelector('.js-trucks-amount').innerHTML =
+          langMessages.twoTrucks
+        document.querySelector('.js-meterage').innerHTML =
+          langMessages.propaneUnit
         fuelPrice.setAttribute('value', data.table.rows[0].c[0].v)
         sellDryingPrice.setAttribute('value', data.table.rows[0].c[1].v)
         document.querySelector('.js-gas-from-client').innerHTML = ''
@@ -207,7 +232,7 @@ function calculate() {
 
   document.querySelector('.js-total-logistic-cost').innerHTML = logisticExpences
 
-  //Calculation
+  //Calculation parameters
 
   let dryerCapacity
   let daysDrying
@@ -266,12 +291,29 @@ function calculate() {
 // Check cell
 
 function checkValue() {
-  let valQty = Number(grainQty.value)
+  // Choose language message
+  const language = document.documentElement.lang
+  const valQty = Number(grainQty.value)
+
+  const messages = {
+    ua: {
+      moistureError: 'Помилка. Введіть значення вологості зерна від 15 до 35.',
+      fillAllFields: 'Будь ласка заповніть всі значення!',
+    },
+    en: {
+      moistureError: 'Error. Enter a grain moisture value between 15 and 35.',
+      fillAllFields: 'Please fill out all the fields!',
+    },
+  }
+
+  const langMessages = messages[language] || messages.ua
+
   if (grainMoisture.value >= 15 && grainMoisture.value <= 35) {
   } else {
-    alert('Помилка. Введіть значення від 15 до 35.')
+    alert(langMessages.moistureError)
     return
   }
+
   if (
     grainQty.value &&
     grainMoisture.value &&
@@ -281,7 +323,7 @@ function checkValue() {
   ) {
     calculate()
   } else {
-    alert('Будь ласка заповніть всі значення!')
+    alert(langMessages.fillAllFields)
   }
 }
 
@@ -299,7 +341,7 @@ btnResult.addEventListener('click', function () {
 
 // Popup
 
-let popupBg = document.querySelector('.popup__bg')
+let popupBg = document.querySelector('.popup_bg')
 let popup = document.querySelector('.popup')
 let openPopupButtons = document.querySelectorAll('.open-popup')
 let closePopupButton = document.querySelector('.close-popup')
@@ -347,24 +389,44 @@ function validateTelphone(telphone) {
 document.querySelector('.popup').addEventListener('submit', function (e) {
   e.preventDefault()
 
+  // Choose language message
+  const language = document.documentElement.lang
+  const messages = {
+    ua: {
+      fillFields: 'Заповніть будь ласка поля!',
+      invalidPhone: 'Невірний формат телефону!',
+      invalidEmail: 'Невірний формат пошти!',
+      successMessage: 'Ваше запитання успішно відправлено!',
+    },
+    en: {
+      fillFields: 'Please fill out the fields!',
+      invalidPhone: 'Invalid phone format!',
+      invalidEmail: 'Invalid e-mail format!',
+      successMessage: 'Your question has been successfully sent!',
+    },
+  }
+
+  const langMessages = messages[language] || messages.ua
+
   let message = `<b>Повідомлення HAMMOND</b>\n`
   message += `<b>Відправник: </b>${this.name.value}\n`
   message += `<b>Пошта: </b>${this.email.value}\n`
   message += `<b>Телефон: </b>${this.tel.value}\n`
   message += `<b>Запитання: </b>${this.message.value}\n`
+
   if (
     this.name.value === '' ||
     this.email.value === '' ||
     this.message.value === ''
   ) {
-    success.innerHTML = 'Заповніть будь ласка поля!'
+    success.innerHTML = langMessages.fillFields
     success.style.display = 'block'
   } else if (validateTelphone(this.tel.value) === false) {
-    success.innerHTML = 'Невірний формат телефону!'
+    success.innerHTML = langMessages.invalidPhone
     success.style.display = 'block'
     return
   } else if (validateEmail(this.email.value) === false) {
-    success.innerHTML = 'Невірний формат пошти!'
+    success.innerHTML = langMessages.invalidEmail
     success.style.display = 'block'
     return
   } else {
@@ -379,12 +441,10 @@ document.querySelector('.popup').addEventListener('submit', function (e) {
         this.email.value = ''
         this.tel.value = ''
         this.message.value = ''
-        success.innerHTML = 'Ваше запитання відправлено!'
+        success.innerHTML = langMessages.successMessage
         success.style.display = 'block'
       })
-
       .catch((err) => {})
-
       .finally(() => {})
   }
 })

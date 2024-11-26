@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon-120x120.png" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles-form.css" />
+    <link rel="stylesheet" href="css/styles-media.css" />
+    <!-- Hotjar Tracking Code for HAMMOND Dryers -->
+    <script>
+      ;(function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            ;(h.hj.q = h.hj.q || []).push(arguments)
+          }
+        h._hjSettings = { hjid: 3433692, hjsv: 6 }
+        a = o.getElementsByTagName('head')[0]
+        r = o.createElement('script')
+        r.async = 1
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+        a.appendChild(r)
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+    </script>
+
+    <title>Hammond table</title>
+  </head>
+
+  <body>
+    <header>
+      <h2><br /></h2>
+    </header>
+    <!-- Wrapper/Обгортка -->
+    <div class="wrapper">
+      <div class="main-content">
+        <div class="header-container">
+          <h1>Mobile grain drying service calculation</h1>
+          <div id="language-switcher">
+            <a href="index_en.html">EN</a>
+            <a href="index_ua.html">UA</a>
+          </div>
+        </div>
+        <h3>
+          This table is an economic calculation of the provision of grain drying
+          services on the customer's territory using a mobile grain dryer of our
+          own production. The calculation was made taking into account the
+          availability of the grain dryer without taking into account the costs
+          of its own production. It is recommended to familiarize yourself with
+          the presentation in advance
+          <a
+            href="./files/Hammond2023.pdf"
+            download
+            style="color: black"
+            title="завантажити презентацію"
+            >"Mobile grain dryer production project".</a
+          >
+        </h3>
+        <!-- усі таблиці -->
+        <div class="all-tables">
+          <div class="tables-left">
+            <div class="table-data">
+              <table>
+                <caption>
+                  Initial data
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Weight of grain (wet), Ton*</td>
+                    <td>
+                      <input
+                        class="cell-input js-grainQty"
+                        type="text"
+                        placeholder="Enter amount of grain"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Initial moisture, %</td>
+                    <td>
+                      <input
+                        class="cell-input js-grainMoisture"
+                        type="number"
+                        placeholder="Enter from 15 to 35"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Grain crop</td>
+                    <td>
+                      <select name="type-grain" id="type-grain">
+                        <option value="maize">CORN</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="star-link">
+                *taking into account drying at one location
+              </p>
+            </div>
+            <div class="table-expences">
+              <table>
+                <caption>
+                  Operating expenses
+                </caption>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td class="go-right js-meterage">hrv/kg</td>
+                    <td class="go-right">hrv</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select name="type-fuel" id="type-fuel">
+                        <option value="propan">Fuel (propan*)</option>
+                        <option value="naturalGas">Fuel (natural gas*)</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        class="cell-input js-fuelPrice"
+                        type="number"
+                        placeholder="Update the price"
+                        value=""
+                      />
+                    </td>
+                    <td class="go-right">
+                      <output
+                        name="total-fuel-cost"
+                        type="number"
+                        class="js-totalFuelPrice"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Salary for 4 workers (+ accommodation and transportation)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td class="go-right">
+                      <output
+                        name="total-salary-cost"
+                        class="js-totalSalary"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Additional costs (two loading and unloading)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td class="go-right">
+                      <output class="" name="total-loading-cost">30 000</output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      Logistics (<span class="js-trucks-amount"
+                        >two trucks</span
+                      >
+                      two way, Odesa +500km)
+                    </td>
+                    <td class="no-border-left"></td>
+                    <td class="go-right">
+                      <output
+                        name="total-logistic-cost"
+                        type="number"
+                        class="js-total-logistic-cost"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-right">
+                      <span class="js-gas-from-client"></span>
+                    </td>
+                    <td class="no-border-left go-right">
+                      <b>Total, hrv</b>
+                    </td>
+                    <td class="results go-right">
+                      <b
+                        ><output
+                          name="total-operation-cost"
+                          type="number"
+                          class="js-totalExpences"
+                        ></output
+                      ></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="star-link">
+                *update fuel prices on the website
+                <a
+                  class="star-link"
+                  href="https://ukravtonomgaz.ua"
+                  target="_blank"
+                  >Ukrautonomgas</a
+                >
+                and
+                <a
+                  class="star-link"
+                  href="https://index.minfin.com.ua/ua/tariff/gas/prom/"
+                  target="_blank"
+                  >Minfin</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="tables-right">
+            <div class="table-capacity">
+              <table>
+                <caption>
+                  Estimated indicators
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Capacity, Tons/hour</td>
+                    <td class="go-right">
+                      <output
+                        name="capacity"
+                        type="number"
+                        class="js-dryerCapacity"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Drying days quantity <br />
+                      (considering loading/commissioning)
+                    </td>
+                    <td class="go-right">
+                      <output
+                        name="daysDrying"
+                        type="number"
+                        class="js-daysDrying"
+                      ></output>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-finance">
+              <table>
+                <caption>
+                  Financial indicators
+                </caption>
+                <tbody>
+                  <tr>
+                    <td>Cost of 1 Ton*%, hrv</td>
+                    <td class="go-right">
+                      <output
+                        name="net-cost"
+                        type="number"
+                        class="js-netCostPercent"
+                      ></output>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Planned drying price of 1 Ton*%, hrv*</td>
+                    <td>
+                      <input
+                        class="cell-input js-sellDryingPrice"
+                        type="number"
+                        placeholder="Update the price"
+                        value=""
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="go-right">
+                      <span>(excluding taxes)</span><b> Profit, hrv</b>
+                    </td>
+                    <td class="results go-right">
+                      <b
+                        ><output
+                          name="total-profit"
+                          type="number"
+                          class="js-totalProfit"
+                        ></output
+                      ></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="star-link">
+                *current drying price in Balta, Odesa region
+                <a
+                  class="star-link"
+                  href="https://alebor.com/prices/"
+                  target="_blank"
+                  >HPP "Chesne"</a
+                >
+              </p>
+            </div>
+            <button class="js-btnResult"><b>Calculate</b></button>
+          </div>
+        </div>
+        <br /><br />
+        <button class="open-popup"><b>Send question</b></button>
+      </div>
+
+      <footer>
+        <div class="contacts">
+          <p class="contacts-item">
+            <b>If you have any questions, please contact:</b>
+          </p>
+          <p class="contacts-item">
+            <a href="tel:+380971114020" class="contacts-number"
+              >+38 097 111 40 20
+            </a>
+          </p>
+          <p class="contacts-item">
+            <a href="mailto:yrachinsky@gmail.com" class="contacts-email">
+              yrachinsky@gmail.com
+            </a>
+          </p>
+        </div>
+        <div class="logo">
+          <img
+            src="img/HAMMOND_free-file (1).png"
+            alt="Logo-hammond"
+            width="200px"
+            class="my_foto"
+          />
+        </div>
+      </footer>
+    </div>
+    <div class="popup_bg">
+      <form class="popup">
+        <svg
+          class="close-popup"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#20b2aa"
+            d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+          />
+        </svg>
+        <label>
+          <input type="text" name="name" autocomplete="off" />
+          <div class="label__text">Your name</div>
+        </label>
+        <label>
+          <input type="tel" name="tel" autocomplete="off" />
+          <div class="label__text">Your phone number</div>
+        </label>
+        <label>
+          <input type="text" name="email" autocomplete="off" />
+          <div class="label__text">Your e-mail</div>
+        </label>
+        <label>
+          <textarea name="message"></textarea>
+          <div class="label__text">Your question</div>
+        </label>
+        <div
+          class="alert-success"
+          id="success"
+          style="display: none"
+          role="alert"
+        ></div>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+
+  <script src="./js/userinfo.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</html>

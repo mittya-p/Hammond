@@ -26,9 +26,47 @@ header {
   text-align: center;
 }
 
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+}
+
+.main-content {
+  padding: 4px 40px 0px 60px;
+  margin-bottom: 0vmax;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 h1 {
   display: block;
   color: lightseagreen;
+}
+
+#language-switcher {
+  display: flex;
+  gap: 10px;
+
+}
+
+#language-switcher a {
+  text-decoration: none;
+  color: lightseagreen;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#language-switcher a:hover {
+  background-color: white;
+  color: black;
 }
 
 h3 {
@@ -50,20 +88,27 @@ span {
   font-size: 11px;
 }
 
-/* Wrapper  */
+/* Таблиці */
 
-.wrapper {
-  width: 100%;
-  margin: 0 auto;
-  position: fixed;
+.all-tables {
+  display: flex;
+  column-gap: 100px;
 }
 
-.main-content {
-  padding: 4px 40px 0px 60px;
-  margin-bottom: 0vmax;
+/* Таблиці зліва */
+
+.tables-left {}
+
+.table-data {
+  margin-bottom: 20px;
 }
 
-/* загальні дані */
+table {
+  padding: 0;
+  border-collapse: collapse;
+  border: 2px solid;
+  empty-cells: hide;
+}
 
 caption {
   background-color: rgba(166, 238, 214, 0.6);
@@ -74,21 +119,9 @@ caption {
   padding: 3px;
 }
 
-.no-border-right {
-  border-right: none;
-}
-
-.no-border-left {
-  border-left: none;
-}
-
-.go-right {
-  text-align: right;
-}
-
-.js-trucks-amount,
-.js-gas-from-client {
-  font-size: 14px;
+tr {
+  width: 100%;
+  text-decoration: none;
 }
 
 td {
@@ -101,18 +134,6 @@ td {
   width: 100%;
 }
 
-table {
-  padding: 0;
-  border-collapse: collapse;
-  border: 2px solid;
-  empty-cells: hide;
-}
-
-tr {
-  width: 100%;
-  text-decoration: none;
-}
-
 .cell-input {
   background-color: azure;
   border: 1px solid;
@@ -121,22 +142,32 @@ tr {
   width: 150px;
 }
 
-.all-tables {
-  display: flex;
-  column-gap: 100px;
-}
-
-/* Влвстивості таблиць */
-.table-data {
-  margin-bottom: 20px;
-}
-
 #type-grain {
   width: 100%;
 }
 
-.table-capacity {
-  margin-bottom: 65px;
+.star-link {
+  color: white;
+  text-shadow: 0 0 10px #000
+}
+
+.table-expences {}
+
+.go-right {
+  text-align: right;
+}
+
+.no-border-right {
+  border-right: none;
+}
+
+.no-border-left {
+  border-left: none;
+}
+
+.js-trucks-amount,
+.js-gas-from-client {
+  font-size: 14px;
 }
 
 .results {
@@ -144,7 +175,21 @@ tr {
   /* opacity: 50%; */
 }
 
-/* кнопка */
+/* Таблиці зправа */
+
+.tables-right {}
+
+.table-capacity {
+  margin-bottom: 65px;
+}
+
+.table-finance {}
+
+/* Форма відправлення запитання */
+
+.open-popup {}
+
+
 button {
   height: 30px;
   background-color: azure;
@@ -180,7 +225,13 @@ footer {
   color: #fff;
   width: 100%;
   height: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Контакти */
 
 .contacts {
   padding: 0;
@@ -200,13 +251,16 @@ footer {
   margin: 5px 0 5px 0;
 }
 
+/* Логотип */
+
 .logo {
   padding: 8px 0 0 0;
 
   margin-right: 60px;
 }
 
-.star-link {
-  color: white;
-  text-shadow: 0 0 10px #000
+.logo img {
+  max-width: 100%;
+  /* Адаптивный размер изображения */
+  height: auto;
 }
