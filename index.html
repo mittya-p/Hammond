@@ -28,6 +28,7 @@
     </script>
 
     <title>Hammond table</title>
+    <script src="./js/cookie.js"></script>
   </head>
 
   <body>
@@ -40,8 +41,8 @@
         <div class="header-container">
           <h1>Розрахунок послуги сушіння</h1>
           <div id="language-switcher">
-            <a href="./index_en.html">EN</a>
-            <a href="./index.html">UA</a>
+            <a onclick="setLanguageCookie('en')" href="./index_en.html">EN</a>
+            <a onclick="setLanguageCookie('ua')" href="./index.html">UA</a>
           </div>
         </div>
 
@@ -328,7 +329,7 @@
         </div>
       </footer>
     </div>
-    <div class="popup_bg">
+    <div class="popup__bg">
       <form class="popup">
         <svg
           class="close-popup"
@@ -338,7 +339,7 @@
           viewBox="0 0 24 24"
         >
           <path
-            fill="#20b2aa"
+            class="icon-path"
             d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
           />
         </svg>

@@ -49,6 +49,7 @@ fetch(full_URL)
   })
 
 fuelType.addEventListener('change', function () {
+    
   // Choose language message
   const language = document.documentElement.lang
   const messages = {
@@ -341,7 +342,7 @@ btnResult.addEventListener('click', function () {
 
 // Popup
 
-let popupBg = document.querySelector('.popup_bg')
+let popupBg = document.querySelector('.popup__bg')
 let popup = document.querySelector('.popup')
 let openPopupButtons = document.querySelectorAll('.open-popup')
 let closePopupButton = document.querySelector('.close-popup')
