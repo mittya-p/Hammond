@@ -5,27 +5,20 @@ function setLanguageCookie(language) {
   }` // 1 год
 }
 
-// Проверяем, выбрал ли пользователь язык вручную (по параметру ?lang=manual)
+// Перенаправление на сохранённый язык
 function redirectToSavedLanguage() {
-  const urlParams = new URLSearchParams(window.location.search)
-  const manualLanguageChange = urlParams.get('lang') === 'manual'
-
-  if (manualLanguageChange) {
-    return // Пользователь выбрал язык вручную, перенаправление не нужно
-  }
-
   const cookies = document.cookie.split('; ')
   const languageCookie = cookies.find((row) => row.startsWith('language='))
   const savedLanguage = languageCookie ? languageCookie.split('=')[1] : null
 
   if (savedLanguage) {
-    const currentPage = location.pathname
-    const isEnglishPage = currentPage.includes('index_en.html')
-    const isUkrainianPage = currentPage.includes('index.html') && !isEnglishPage
-
-    if (savedLanguage === 'en' && !isEnglishPage) {
+    // Перенаправление на соответствующую страницу
+    if (savedLanguage === 'en' && !location.href.includes('index_en.html')) {
       window.location.href = './index_en.html'
-    } else if (savedLanguage === 'ua' && !isUkrainianPage) {
+    } else if (
+      savedLanguage === 'ua' &&
+      !location.href.includes('index.html')
+    ) {
       window.location.href = './index.html'
     }
   }
