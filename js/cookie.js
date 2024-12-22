@@ -1,19 +1,18 @@
-
-
-// Встановлення cookie для мови
+// Установка cookie для языка
 function setLanguageCookie(language) {
   document.cookie = `language=${language}; path=/; max-age=${
     60 * 60 * 24 * 365
   }` // 1 год
+  localStorage.setItem('manualLanguageChange', 'true') // Флаг, что язык выбран вручную
 }
 
-// Перевіряємо, чи вибрав користувач мову вручну (за параметром ?lang=manual)
+// Перенаправление на сохранённый язык
 function redirectToSavedLanguage() {
-  const urlParams = new URLSearchParams(window.location.search)
-  const manualLanguageChange = urlParams.get('lang') === 'manual'
-
-  if (manualLanguageChange) {
-    return // Користувач вибрав мову вручну, перенаправлення не потрібно
+  // Проверяем, был ли язык изменён вручную
+  const manualChange = localStorage.getItem('manualLanguageChange')
+  if (manualChange === 'true') {
+    localStorage.removeItem('manualLanguageChange') // Сбрасываем флаг
+    return // Отключаем перенаправление
   }
 
   const cookies = document.cookie.split('; ')
@@ -33,5 +32,5 @@ function redirectToSavedLanguage() {
   }
 }
 
-// Виконуємо перенаправлення під час завантаження сторінки
+// Выполняем перенаправление при загрузке страницы
 window.onload = redirectToSavedLanguage
