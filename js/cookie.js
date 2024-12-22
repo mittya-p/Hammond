@@ -3,16 +3,15 @@ function setLanguageCookie(language) {
   document.cookie = `language=${language}; path=/; max-age=${
     60 * 60 * 24 * 365
   }` // 1 год
-  localStorage.setItem('manualLanguageChange', 'true') // Флаг, что язык выбран вручную
 }
 
-// Перенаправление на сохранённый язык
+// Проверяем, выбрал ли пользователь язык вручную (по параметру ?lang=manual)
 function redirectToSavedLanguage() {
-  // Проверяем, был ли язык изменён вручную
-  const manualChange = localStorage.getItem('manualLanguageChange')
-  if (manualChange === 'true') {
-    localStorage.removeItem('manualLanguageChange') // Сбрасываем флаг
-    return // Отключаем перенаправление
+  const urlParams = new URLSearchParams(window.location.search)
+  const manualLanguageChange = urlParams.get('lang') === 'manual'
+
+  if (manualLanguageChange) {
+    return // Пользователь выбрал язык вручную, перенаправление не нужно
   }
 
   const cookies = document.cookie.split('; ')
