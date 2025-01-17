@@ -19,7 +19,7 @@ header {
   justify-content: space-between;
   padding: 5px;
   margin: 0 0 0 0;
-  background-color: rgba(10, 78, 44, 0.8);
+  background-color: #0a4e2ccc;
   color: #fff;
   width: 100%;
   height: auto;
@@ -45,7 +45,7 @@ header {
 
 h1 {
   display: block;
-  color: lightseagreen;
+  color: #20b2aa;
 }
 
 #language-switcher {

@@ -1,11 +1,13 @@
-// Установка cookie для языка
+
+
+// Встановлення cookie для мови
 function setLanguageCookie(language) {
   document.cookie = `language=${language}; path=/; max-age=${
     60 * 60 * 24 * 365
-  }` // 1 год
+  }` // 1 рік
 }
 
-// Перенаправление на сохранённый язык
+// Перенаправлення на збережену мову
 function redirectToSavedLanguage() {
   const cookies = document.cookie.split('; ')
   const languageCookie = cookies.find((row) => row.startsWith('language='))
@@ -16,7 +18,7 @@ function redirectToSavedLanguage() {
     const isEnglishPage = currentPage.includes('index_en.html')
     const isUkrainianPage = currentPage.includes('index.html') && !isEnglishPage
 
-    // Перенаправление на нужную страницу в зависимости от сохранённого языка
+    // Перенаправлення на потрібну сторінку в залежності від збереженої мови
     if (savedLanguage === 'en' && !isEnglishPage) {
       window.location.href = './index_en.html'
     } else if (savedLanguage === 'ua' && !isUkrainianPage) {
@@ -25,5 +27,5 @@ function redirectToSavedLanguage() {
   }
 }
 
-// Выполняем перенаправление при загрузке страницы
+// Виконуємо перенаправлення під час завантаження сторінки
 window.onload = redirectToSavedLanguage

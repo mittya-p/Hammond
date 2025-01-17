@@ -1,6 +1,6 @@
 'use strict'
 
-const addExpences = 30000
+const addExpences = 50000
 let logisticExpences
 
 //Outputs
@@ -49,7 +49,6 @@ fetch(full_URL)
   })
 
 fuelType.addEventListener('change', function () {
-    
   // Choose language message
   const language = document.documentElement.lang
   const messages = {
